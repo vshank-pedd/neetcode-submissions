@@ -1,0 +1,9 @@
+-- Write your query below
+select distinct page_id as recommended_page
+from likes l
+join friendship f on f.user2_id = l.user_id or f.user1_id = l.user_id
+where page_id not in (
+    select page_id
+    from likes
+    where user_id = 1
+) and (user1_id =1 or user2_id =1)
